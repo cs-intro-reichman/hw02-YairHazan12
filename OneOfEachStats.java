@@ -14,7 +14,50 @@ public class OneOfEachStats {
 		int seed = Integer.parseInt(args[1]);
 		// Initailizes a random numbers generator with the given seed value
         Random generator = new Random(seed);  
-		
+		double avarage = 0;
+		int familiesof2, familiesof3, familiesof4ormore;
+		familiesof2 = familiesof3 = familiesof4ormore = 0;
+		for (int i = 0; i < T; i++) {
+			String gender = "";
+			String newborn = "";
+			int babycounter = 1;
+			double borg = generator.nextDouble(); // boy or girl
+			if (borg < 0.5) 
+				gender = "b ";
+			else
+				gender = "g ";
+			do {babycounter++;
+				borg = generator.nextDouble();
+				if (borg < 0.5) 
+					newborn = "b ";
+				else
+					newborn = "g ";
+			} while (gender == newborn);
+			avarage +=babycounter;
+			switch (babycounter) {
+				case 2:
+					familiesof2++;
+					break;
+				case 3:
+					familiesof3++;
+					break;
+				default:
+					familiesof4ormore++;
+					break;
+			}
+		}
+		avarage = avarage/T;
+		System.out.println("Average: " + avarage + " children to get at least one of each gender.");
+		System.out.println("Number of families with 2 children: " + familiesof2);
+		System.out.println("Number of families with 3 children: " + familiesof3);
+		System.out.println("Number of families with 4 or more children: " + familiesof4ormore);
+		if (familiesof2 == Math.max(familiesof4ormore, Math.max(familiesof2, familiesof3))) {
+			System.out.println("The most common number of children is 2.");
+		}else if (familiesof3 == Math.max(familiesof4ormore, Math.max(familiesof2, familiesof3))) {
+			System.out.println("The most common number of children is 3.");
+		}else {
+			System.out.println("The most common number of children is 4 or more.");
+		}
 		//// In the previous version of this program, you used a statement like:
 		//// double rnd = Math.random();
 		//// Where "rnd" is the variable that stores the generated random value.
