@@ -8,8 +8,8 @@ public class Reverse {
 		char middle = ' ';
 		for ( int i = 0; i<word.length(); i++){
 			System.out.print(word.charAt(word.length() - i - 1));
-			if (i == word.length()/2) {
-				middle = word.charAt(i-1);
+			if (i == (word.length() + 1) / 2) {
+				middle = word.charAt(i);
 			}
 		}
 		System.out.println();
